@@ -8,51 +8,48 @@ class Platform():
     def __init__(self):
         window = tk.Tk()
         window.title("Exchange Rates")
+        CurrencyList = ["USD", "CAD", "INR", "EUR", "GBP"]
 
-        # l1 = tk.Label(text="Amount:").pack()
+        #set the frame
+        frame = tk.Frame(master=window)
+        frame.grid(row=0,column=0)
 
-        # e1 = tk.Entry().pack()
+        #base label
+        l1 = tk.Label(master=frame,text="Amount:")
+        l1.pack()
 
+        #base amount entry box
+        frame.grid(row=0, column=1)
+        amountEntry = tk.Entry(master=frame)
+        amountEntry.pack()
 
-        baseLstBox = tk.Listbox(height=5, width=8)
-        baseScroll = tk.Scrollbar(baseLstBox, command= baseLstBox.yview)
-        baseLstBox.configure(yscrollcommand = baseScroll.set)
-        baseLstBox.pack(side="left")
-        baseScroll.pack(side="right", fill="y")
+        #base currency listbox
+        frame.grid(row=0, column=2)
+        baseList = tk.Listbox(master=frame)
+        baseList.pack()
+        #populate baseList
+        for currency in CurrencyList:
+            baseList.insert(tk.END, currency)
         
-        
-        baseLstBox.insert(1,"USD")
-        baseLstBox.insert(2,"CAD")
-        baseLstBox.insert(3,"INR")
-        baseLstBox.insert(4,"EUR")
-        baseLstBox.insert(5,"GBP")
-        baseLstBox.insert(6,"AMD")
-        baseLstBox.insert(7,"XCD")
-        baseLstBox.insert(8,"AOA")
-        baseLstBox.pack()
+        frame.grid(row=0,column=3)
+        l2 = tk.Label(master=frame, text=" to ")
+        l2.pack()
 
-        
-        
-        
+        #destination currency part
+        frame.grid(row=0, column=4)
+        l3 = tk.Label(master=frame, text="0.00")
+        l3.pack()
 
-        # l2 = tk.Label(text=" to ").grid(row=0, column=3)
+        frame.grid(row=0, column=5)
+        dstList = tk.Listbox(master=frame)
+        dstList.pack()
+        #populate dstList
+        for currency in CurrencyList:
+            dstList.insert(tk.END, currency)
 
-        # dstLstBox = tk.Listbox()
-        # dstLstBox.grid(row=0, column=4)
-        # dstLstBox.insert(1,"USD")
-        # dstLstBox.insert(2,"CAD")
-        # dstLstBox.insert(3,"INR")
-        # dstLstBox.insert(4,"EUR")
-        # dstLstBox.insert(5,"GBP")
-
-        # dstScroll = tk.Scrollbar(dstLstBox, orient="vertical")
-        # dstScroll.pack()
-
-        # resultL = tk.Label(text="0.0")
-        # resultL.grid(row=0,column=5)
-
-        # calculate = tk.Button(text="Convert")
-        # calculate.grid(row=1, column=3)
+        frame.grid(row=0, column=6)
+        calculate = tk.Button(text="Convert")
+        calculate.pack()
 
         window.mainloop()
 

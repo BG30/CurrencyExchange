@@ -10,46 +10,29 @@ class Platform():
         window.title("Exchange Rates")
         CurrencyList = ["USD", "CAD", "INR", "EUR", "GBP"]
 
-        #set the frame
-        frame = tk.Frame(master=window)
-        frame.grid(row=0,column=0)
-
         #base label
-        l1 = tk.Label(master=frame,text="Amount:")
-        l1.pack()
+        l1 = tk.Label(text="Amount:").grid(row=0, column=0)
 
         #base amount entry box
-        frame.grid(row=0, column=1)
-        amountEntry = tk.Entry(master=frame)
-        amountEntry.pack()
+        amountEntry = tk.Entry().grid(row=0, column=1)
 
         #base currency listbox
-        frame.grid(row=0, column=2)
-        baseList = tk.Listbox(master=frame)
-        baseList.pack()
+        baseList = tk.Listbox().grid(row=0, column=2)
         #populate baseList
         for currency in CurrencyList:
             baseList.insert(tk.END, currency)
         
-        frame.grid(row=0,column=3)
-        l2 = tk.Label(master=frame, text=" to ")
-        l2.pack()
+        l2 = tk.Label(text=" to ").grid(row=0, column=3)
 
         #destination currency part
-        frame.grid(row=0, column=4)
-        l3 = tk.Label(master=frame, text="0.00")
-        l3.pack()
+        l3 = tk.Label(text="0.00").grid(row=0, column=4)
 
-        frame.grid(row=0, column=5)
-        dstList = tk.Listbox(master=frame)
-        dstList.pack()
+        dstList = tk.Listbox().grid(row=0, column=5)
         #populate dstList
         for currency in CurrencyList:
-            dstList.insert(tk.END, currency)
+             dstList.insert(tk.END, currency)
 
-        frame.grid(row=0, column=6)
-        calculate = tk.Button(text="Convert")
-        calculate.pack()
+        calculate = tk.Button(text="Convert").grid(row=0, column=6)
 
         window.mainloop()
 
@@ -58,5 +41,4 @@ class Platform():
          x = result["conversion_rates"]
          self.resultL.set(x["INR"]*5)
         
-
 Platform()

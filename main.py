@@ -17,17 +17,19 @@ class Platform():
         amountEntry = tk.Entry().grid(row=0, column=1)
 
         #base currency listbox
-        baseList = tk.Listbox().grid(row=0, column=2)
+        baseList = tk.Listbox()
+        baseList.grid(row=0, column=2)
         #populate baseList
-        for currency in CurrencyList:
-            baseList.insert(tk.END, currency)
+        for x in CurrencyList:
+            baseList.insert(tk.END, x)
         
         l2 = tk.Label(text=" to ").grid(row=0, column=3)
 
         #destination currency part
         l3 = tk.Label(text="0.00").grid(row=0, column=4)
 
-        dstList = tk.Listbox().grid(row=0, column=5)
+        dstList = tk.Listbox()
+        dstList.grid(row=0, column=5)
         #populate dstList
         for currency in CurrencyList:
              dstList.insert(tk.END, currency)

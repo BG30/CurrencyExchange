@@ -40,8 +40,7 @@ class Platform():
         def getExchange():
             result = requests.get("https://v6.exchangerate-api.com/v6/{}/latest/{}".format(av.getExchangeRateKey(),"USD")).json()
             x = result["conversion_rates"]
-            value = x["INR"]*float( amountEntry.get() )
-            print(amountEntry.get())
+            value = round(x["INR"]*float(amountEntry.get()),2)
             l3.config(text=value)
 
         calculate = tk.Button(text="Convert", command=lambda: getExchange())

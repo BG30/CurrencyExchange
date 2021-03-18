@@ -14,7 +14,9 @@ class Platform():
         l1 = tk.Label(text="Amount:").grid(row=0, column=0)
 
         #base amount entry box
-        amountEntry = tk.Entry().grid(row=0, column=1)
+        amountEntry = tk.Entry()
+        amountEntry.insert(tk.END, "7.00")
+        amountEntry.grid(row=0, column=1)
 
         #base currency listbox
         baseList = tk.Listbox()
@@ -26,7 +28,8 @@ class Platform():
         l2 = tk.Label(text=" to ").grid(row=0, column=3)
 
         #destination currency part
-        l3 = tk.Label(text="0.00").grid(row=0, column=4)
+        l3 = tk.Label(text="0.00")
+        l3.grid(row=0, column=4)
 
         dstList = tk.Listbox()
         dstList.grid(row=0, column=5)
@@ -34,13 +37,16 @@ class Platform():
         for currency in CurrencyList:
              dstList.insert(tk.END, currency)
 
-        calculate = tk.Button(text="Convert").grid(row=0, column=6)
+        def getExchange():
+            result = requests.get("https://v6.exchangerate-api.com/v6/{}/latest/{}".format(av.getExchangeRateKey(),"USD")).json()
+            x = result["conversion_rates"]
+            value = x["INR"]*float( amountEntry.get() )
+            print(amountEntry.get())
+            l3.config(text=value)
+
+        calculate = tk.Button(text="Convert", command=lambda: getExchange())
+        calculate.grid(row=0, column=6)
 
         window.mainloop()
-
-    def getExchange(self, amount, base, dst):
-         result = requests.get("https://v6.exchangerate-api.com/v6/{}/latest/{}".format(av.getExchangeRateKey(),"USD")).json()
-         x = result["conversion_rates"]
-         self.resultL.set(x["INR"]*5)
         
 Platform()
